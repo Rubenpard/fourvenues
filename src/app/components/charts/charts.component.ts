@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-charts',
+  selector: 'charts',
   imports: [],
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.sass'
