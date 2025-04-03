@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  userPicture: string = 'https://rubenalemartinez.es/assets/rubenmartinez.jpg';
+  userName: string = 'Ruben Martinez';
+
 }
