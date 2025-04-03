@@ -1,1 +1,36 @@
-<p>navbar works!</p>
+<nav class="flex justify-between items-center bg-white shadow-md px-6 py-3">
+  <!-- Logo -->
+  <div class="text-xl font-bold text-gray-700">
+    Dashboard
+  </div>
+
+  <!-- Buscador -->
+  <div class="relative w-1/3">
+    <input
+      type="text"
+      placeholder="Buscar..."
+      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
+
+  <!-- Iconos de usuario -->
+  <div class="flex items-center gap-4">
+    <!-- Notificación -->
+    <button class="relative p-2 rounded-full hover:bg-gray-200">
+      🔔
+      <span class="absolute top-0 right-0 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+        3
+      </span>
+    </button>
+
+    <!-- Perfil de usuario -->
+    <div class="flex items-center gap-2 cursor-pointer">
+      <img
+        src="assets/user.jpg"
+        alt="Usuario"
+        class="w-10 h-10 rounded-full"
+      />
+      <span class="font-medium text-gray-700">Rubén</span>
+    </div>
+  </div>
+</nav>
