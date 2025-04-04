@@ -1,14 +1,30 @@
 <div class="flex">
   <!-- Sidebar -->
-  <div [ngClass]="{'w-64': expanded, 'w-16': !expanded}" class="h-screen bg-gray-900 text-white flex flex-col p-4 transition-all duration-300">
-    <!-- Botón de colapsar -->
-    <button (click)="toggleSidebar()" class="mb-4 p-2 rounded bg-gray-700 hover:bg-gray-600">
-      <span *ngIf="expanded">  ☰</span>
-      <span *ngIf="!expanded">  ☰</span>
+  <div
+    [ngClass]="{
+      'w-64': expanded,
+      'w-16': !expanded,
+      'lg:w-64': expanded,
+      'lg:w-16': !expanded,
+      'w-full': expanded && isMobile,
+      'h-[250px]': contentVisible || !isMobile,
+      'h-[70px]': !contentVisible && isMobile
+    }"
+    class="lg:h-screen bg-gray-900 text-white flex flex-col p-4 transition-all duration-300">
+
+    <!-- Botón para expandir en escritorio -->
+    <button *ngIf="!isMobile" (click)="toggleSidebar()" class="mb-4 p-2 rounded bg-gray-700 hover:bg-gray-600">
+      <span *ngIf="expanded">☰</span>
+      <span *ngIf="!expanded">☰</span>
+    </button>
+
+    <!-- Botón para mostrar/ocultar en móvil -->
+    <button *ngIf="isMobile" (click)="toggleContent()" class="mb-4 p-2 rounded bg-gray-700 hover:bg-gray-600">
+      <span>{{ contentVisible ? 'Ocultar Menú' : 'Mostrar Menú' }}</span>
     </button>
 
     <!-- Menú -->
-    <ul class="flex flex-col gap-4">
+    <ul *ngIf="contentVisible || !isMobile" class="flex flex-col gap-4">
       <li *ngFor="let item of menuItems" class="flex items-center gap-3 cursor-pointer hover:bg-gray-800 p-2 rounded">
         <span class="text-lg">{{ item.icon }}</span>
         <span *ngIf="expanded">{{ item.label }}</span>

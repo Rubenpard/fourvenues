@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,11 +8,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sidebar.component.sass'
 })
 export class SidebarComponent {
-  expanded: boolean = true; // Estado para el sidebar
+  expanded = true;
+  isMobile = false;
+  contentVisible = true;
 
-  // Función para alternar el estado del sidebar
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.isMobile = window.innerWidth < 768; // Cambia 768 según el punto de ruptura que desees
+  }
+
+  ngOnInit() {
+    this.isMobile = window.innerWidth < 768; // Verifica el tamaño de la pantalla al iniciar
+  }
+
   toggleSidebar() {
     this.expanded = !this.expanded;
+  }
+
+  toggleContent() {
+    this.contentVisible = !this.contentVisible; // Muestra u oculta el contenido en móvil
   }
 
   // Puedes definir los items del menú aquí o cargarlo de alguna parte
@@ -21,4 +35,5 @@ export class SidebarComponent {
     { icon: '📅', label: 'Calendar' },
     { icon: '📞', label: 'Contact' }
   ];
+
 }

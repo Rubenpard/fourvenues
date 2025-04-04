@@ -1,1 +1,93 @@
-<p>dashboard works!</p>
+<div class="p-6 bg-gray-100 min-h-screen">
+  <!-- Tarjetas de métricas -->
+  <div class="grid grid-cols-4 gap-4 mb-6">
+    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+      <p class="text-gray-600">Visits</p>
+      <p class="text-2xl font-bold">{{ visits | number }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+      <p class="text-gray-600">Duration</p>
+      <p class="text-2xl font-bold">{{ duration }} sec</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+      <p class="text-gray-600">Bounce Rate</p>
+      <p class="text-2xl font-bold">{{ bounceRate }}%</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+      <p class="text-gray-600">Pages per Visit</p>
+      <p class="text-2xl font-bold">{{ pagesPerVisit }}</p>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="grid grid-cols-2 gap-4">
+    <!-- Gráfico de sesiones -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-lg font-semibold mb-2">Sessions</h3>
+      <ngx-charts-line-chart
+      [view]="[590, 300]"
+      [results]="data"
+      [scheme]="colorScheme"
+      [gradient]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showXAxisLabel]="false"
+      [showYAxisLabel]="false"
+      [autoScale]="true"
+      [animations]="false">
+    </ngx-charts-line-chart>
+    </div>
+
+    <!-- Fuentes de tráfico -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-lg font-semibold mb-2">Traffic Sources</h3>
+      <div class="flex justify-center items-center h-full">
+        <ngx-charts-pie-chart
+          [view]="[200, 200]"
+          [legend]="false"
+          [results]="trafficData"
+          [doughnut]="true"
+          [scheme]="colorScheme"
+          [animations]="false">
+        </ngx-charts-pie-chart>
+        <div class="ml-4 grid grid-cols-2">
+          <div *ngFor="let item of trafficData; let i = index" class="flex items-center mb-4 ml-6">
+            <!-- Color correspondiente -->
+            <div
+              class="w-4 h-4 rounded-full mr-6"
+              [ngStyle]="{ 'background-color': colorScheme.domain[i] }">
+            </div>
+            <!-- Nombre -->
+            <span>{{ item.name }} <span class="text-xs">({{item.value}})</span></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tasas de conversión -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-lg font-semibold mb-2">Conversion Rates</h3>
+      <div class="flex">
+        <div>
+          <ngx-charts-bar-horizontal
+            [view]="[500, 200]"
+            [results]="conversionData"
+            [scheme]="colorScheme"
+            [yAxis]="true"
+            [gradient]="true"
+            [roundEdges]="true"
+            [animations]="false"
+            [barPadding]="50">
+          </ngx-charts-bar-horizontal>
+        </div>
+
+        <div class="flex flex-col ml-4">
+          <div *ngFor="let item of conversionData" class="mb-8">
+            <span class="font-semibold">{{ item.value }}%</span>
+          </div>
+        </div>
+      </div>
+
+
+</div>

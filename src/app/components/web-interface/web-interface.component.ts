@@ -23,7 +23,6 @@ export class WebInterfaceComponent {
     { name: 'RebecaHerrera', picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66u28GmtwzlhyYSoViq3P62MhfYTYLJ8bTw&s', connected: true},
     { name: 'Dani Collier', picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66u28GmtwzlhyYSoViq3P62MhfYTYLJ8bTw&s', connected: false},
     { name: 'Notification', picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66u28GmtwzlhyYSoViq3P62MhfYTYLJ8bTw&s', connected: false},
-
     { name: 'Notification', picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66u28GmtwzlhyYSoViq3P62MhfYTYLJ8bTw&s', connected: false},
     { name: 'Notification', picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66u28GmtwzlhyYSoViq3P62MhfYTYLJ8bTw&s', connected: false},
 
