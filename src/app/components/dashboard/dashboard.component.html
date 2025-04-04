@@ -1,6 +1,6 @@
-<div class="p-6 bg-gray-100 min-h-screen">
+<div class="p-1 lg:p-6 bg-gray-100 min-h-screen">
 
-  <div class="flex-col lg:flex flex-row items-center justify-between p-4 rounded-lg mb-9">
+  <div class="flex-col p-0 lg:flex flex-row items-center justify-between lg:p-4 rounded-lg mb-9">
     <!-- Título -->
     <div class="flex items-center gap-2 mb-5">
       <div class="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
@@ -82,54 +82,28 @@
     </div>
     </div>
   </div>
-
-  <!-- Gráficos -->
-  <div class="grid-cols-1 lg:grid grid-cols-2 gap-4">
-    <!-- Gráfico de sesiones -->
-    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+<!-- Contenedor padre para columnas independientes -->
+<div class="flex flex-col lg:flex-row gap-6">
+  <!-- Columna Izquierda -->
+  <div class="flex flex-col gap-6 w-full lg:w-1/2">
+    <!-- Gráfico de Sessions -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
       <h3 class="text-lg font-semibold mb-2">Sessions</h3>
       <ngx-charts-line-chart
-      [view]="lineChartView"
-      [results]="data"
-      [scheme]="colorScheme"
-      [gradient]="true"
-      [xAxis]="true"
-      [yAxis]="true"
-      [showXAxisLabel]="false"
-      [showYAxisLabel]="false"
-      [autoScale]="true"
-      [animations]="false">
-    </ngx-charts-line-chart>
+        [view]="lineChartView"
+        [results]="data"
+        [scheme]="colorScheme"
+        [gradient]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showXAxisLabel]="false"
+        [showYAxisLabel]="false"
+        [autoScale]="true"
+        [animations]="false">
+      </ngx-charts-line-chart>
     </div>
 
-    <!-- Fuentes de tráfico -->
-    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-      <h3 class="text-lg font-semibold mb-2">Traffic Sources</h3>
-      <div class="flex-col md:flex flex-row justify-center items-center h-full">
-        <ngx-charts-pie-chart
-          [view]="pieChartView"
-          [legend]="false"
-          [results]="trafficData"
-          [doughnut]="true"
-          [scheme]="colorScheme"
-          [animations]="false">
-        </ngx-charts-pie-chart>
-        <div class="ml-4 grid grid-cols-2">
-          <div *ngFor="let item of trafficData; let i = index" class="flex items-center mb-4 ml-6">
-            <!-- Color correspondiente -->
-            <div
-              class="w-4 h-4 rounded-full mr-6"
-              [ngStyle]="{ 'background-color': colorScheme.domain[i] }">
-            </div>
-            <!-- Nombre -->
-            <span>{{ item.name }} <span class="text-xs">({{item.value}})</span></span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Tasas de conversión -->
+    <!-- Tasas de Conversión -->
     <div class="bg-white p-6 rounded-lg shadow-md">
       <h3 class="text-lg font-semibold mb-2">Conversion Rates</h3>
       <div class="flex">
@@ -145,13 +119,60 @@
             [barPadding]="50">
           </ngx-charts-bar-horizontal>
         </div>
-
-        <div class="flex flex-col ml-4">
-          <div *ngFor="let item of conversionData" class="mb-6">
+        <div class="flex flex-col ml-4 gap-6">
+          <div *ngFor="let item of conversionData">
             <span class="font-semibold">{{ item.value }}%</span>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
+  <!-- Columna Derecha -->
+  <div class="flex flex-col gap-6 w-full lg:w-1/2">
+    <!-- Fuentes de Tráfico -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-lg font-semibold mb-2">Traffic Sources</h3>
+      <div class="flex flex-col md:flex flex-row justify-center items-center h-full">
+        <ngx-charts-pie-chart
+          [view]="pieChartView"
+          [legend]="false"
+          [results]="trafficData"
+          [doughnut]="true"
+          [scheme]="colorScheme"
+          [animations]="false">
+        </ngx-charts-pie-chart>
+        <div class="ml-4 grid grid-cols-2 gap-2">
+          <div *ngFor="let item of trafficData; let i = index" class="flex items-center">
+            <!-- Color correspondiente -->
+            <div
+              class="w-4 h-4 rounded-full mr-2"
+              [ngStyle]="{ 'background-color': colorScheme.domain[i] }">
+            </div>
+            <!-- Nombre -->
+            <span>{{ item.name }} <span class="text-xs">({{ item.value }})</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Bounce Rate -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-lg font-semibold mb-2">Bounce Rate</h3>
+      <div class="flex flex-col md:flex flex-row justify-center items-center h-full">
+        <ngx-charts-line-chart
+          [view]="BounceView"
+          [scheme]="colorScheme"
+          [results]="lineChartData"
+          [gradient]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [showXAxisLabel]="false"
+          [showYAxisLabel]="false"
+          [autoScale]="true"
+          [animations]="true">
+        </ngx-charts-line-chart>
+      </div>
+    </div>
+  </div>
 </div>

@@ -11,6 +11,13 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 })
 export class DashboardComponent implements AfterViewInit {
 
+    // Variables para los datos de las estadísticas
+    numberOfUsers = 1000;
+    visits = 1702946;
+    duration = 92;
+    bounceRate = 58.6;
+    pagesPerVisit = 1.81;
+
   constructor(private appRef: ApplicationRef) {}
 
   filters = [
@@ -24,13 +31,21 @@ export class DashboardComponent implements AfterViewInit {
   dateRange = '24 Mar - 23 Apr 2019';
 
 
+   // Datos del gráfico
+  public lineChartData = [
+    {
+      name: 'Bounce Rate',
+      series: [
+        { name: 'Jul 14', value: 5 },
+        { name: 'Sep 14', value: 15 },
+        { name: 'Nov 14', value: 10 },
+        { name: 'Jan 14', value: 20 },
+        { name: 'Mar 14', value: 25 },
+        { name: 'May 21', value: 30 },
+      ],
+    },
+  ];
 
-  // Variables para los datos de las estadísticas
-  numberOfUsers = 1000;
-  visits = 1702946;
-  duration = 92;
-  bounceRate = 58.6;
-  pagesPerVisit = 1.81;
 
   // Esquema de colores reutilizable
   colorScheme = {
@@ -41,6 +56,7 @@ export class DashboardComponent implements AfterViewInit {
   lineChartView: [number, number] = [700, 300];
   pieChartView: [number, number] = [300, 300];
   barChartView: [number, number] = [700, 300];
+  BounceView: [number, number] = [600, 300];
 
   data = [
     {
@@ -89,17 +105,20 @@ export class DashboardComponent implements AfterViewInit {
     const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
 
     if (isMobile) {
-      this.lineChartView = [200, 100];
+      this.lineChartView = [300, 100];
       this.pieChartView = [200, 200];
       this.barChartView = [200, 180];
+      this.BounceView = [300, 100];
     } else if (isTablet) {
       this.lineChartView = [600, 300];
       this.pieChartView = [250, 250];
       this.barChartView = [500, 200];
+      this.BounceView = [300, 100];
     } else {
       this.lineChartView = [600, 300];
       this.pieChartView = [200, 200];
       this.barChartView = [500, 200];
+      this.BounceView = [100, 300];
     }
   }
 }

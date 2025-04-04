@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
-import { WebInterfaceComponent } from "./components/web-interface/web-interface.component";
+import { WebInterfaceComponent } from './components/web-interface/web-interface.component';
 
 
 @Component({
@@ -13,4 +13,5 @@ import { WebInterfaceComponent } from "./components/web-interface/web-interface.
 })
 export class AppComponent {
   title = 'fourvenues';
+
 }
