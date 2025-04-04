@@ -13,6 +13,18 @@ export class DashboardComponent implements AfterViewInit {
 
   constructor(private appRef: ApplicationRef) {}
 
+  filters = [
+    { label: 'Today', value: 'today' },
+    { label: 'Week', value: 'week' },
+    { label: 'Month', value: 'month' },
+    { label: 'Quarter', value: 'quarter' },
+    { label: 'Year', value: 'year' }
+  ];
+
+  dateRange = '24 Mar - 23 Apr 2019';
+
+
+
   // Variables para los datos de las estadísticas
   numberOfUsers = 1000;
   visits = 1702946;
@@ -78,15 +90,15 @@ export class DashboardComponent implements AfterViewInit {
 
     if (isMobile) {
       this.lineChartView = [200, 100];
-      this.pieChartView = [300, 200];
-      this.barChartView = [200, 250];
+      this.pieChartView = [200, 200];
+      this.barChartView = [200, 180];
     } else if (isTablet) {
       this.lineChartView = [600, 300];
       this.pieChartView = [250, 250];
       this.barChartView = [500, 200];
     } else {
       this.lineChartView = [600, 300];
-      this.pieChartView = [300, 300];
+      this.pieChartView = [200, 200];
       this.barChartView = [500, 200];
     }
   }

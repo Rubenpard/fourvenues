@@ -10,23 +10,23 @@
       'h-[250px]': contentVisible || !isMobile,
       'h-[70px]': !contentVisible && isMobile
     }"
-    class=" md:w-full lg:h-screen bg-gray-900 text-white flex flex-col p-4 transition-all duration-300">
+    class=" md:w-full lg:h-screen bg-gray-900 text-white flex flex-col transition-all duration-300">
 
     <!-- Botón para expandir en escritorio -->
-    <button *ngIf="!isMobile" (click)="toggleSidebar()" class="mb-4 p-2 rounded bg-gray-700 hover:bg-gray-600">
+    <button *ngIf="!isMobile" (click)="toggleSidebar()" class="mb-4 p-2 text-lg border-b-3 border-gray-600 py-8">
       <span *ngIf="expanded">☰</span>
       <span *ngIf="!expanded">☰</span>
     </button>
 
     <!-- Botón para mostrar/ocultar en móvil -->
-    <button *ngIf="isMobile" (click)="toggleContent()" class="mb-4 p-2 rounded bg-gray-700 hover:bg-gray-600">
+    <button *ngIf="isMobile" (click)="toggleContent()" class=" p-2 rounded bg-gray-700 hover:bg-blue-500">
       <span>{{ contentVisible ? 'Ocultar Menú' : 'Mostrar Menú' }}</span>
     </button>
 
     <!-- Menú -->
     <ul *ngIf="contentVisible || !isMobile" class="flex flex-col gap-4">
-      <li *ngFor="let item of menuItems" class="flex items-center gap-3 cursor-pointer hover:bg-gray-800 p-2 rounded">
-        <span class="text-lg">{{ item.icon }}</span>
+      <li *ngFor="let item of menuItems" class="flex items-center gap-3 cursor-pointer hover:bg-blue-500 p-2 rounded">
+        <span class="text-lg" [innerHTML]="item.icon"></span>
         <span *ngIf="expanded">{{ item.label }}</span>
       </li>
     </ul>

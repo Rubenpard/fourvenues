@@ -1,21 +1,85 @@
 <div class="p-6 bg-gray-100 min-h-screen">
+
+  <div class="flex-col lg:flex flex-row items-center justify-between p-4 rounded-lg mb-9">
+    <!-- Título -->
+    <div class="flex items-center gap-2 mb-5">
+      <div class="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+        <span class="text-gray-600 text-lg font-bold">☰</span>
+      </div>
+      <h1 class="text-xl font-semibold text-gray-800">Dashboard</h1>
+    </div>
+
+    <!-- Filtros -->
+    <div class="flex items-center gap-2 border-2 border-gray-300 rounded-full p-2 mb-5">
+      <button *ngFor="let filter of filters"
+              (click)="setFilter(filter.value)"
+              [ngClass]="{
+                'bg-gray-100': selectedFilter !== filter.value,
+                'bg-blue-600 text-white': selectedFilter === filter.value
+              }"
+              class="px-4 py-2 text-sm font-medium text-gray-400 rounded hover:bg-gray-200">
+        {{ filter.label }}
+      </button>
+    </div>
+
+    <!-- Selector de rango de fechas -->
+
+      <div class="flex items-center border-2 border-gray-300 rounded-full px-6 py-4 mb-5">
+        <span class="text-gray-600 text-sm">📅</span>
+        <span class="ml-2 text-gray-700 text-sm">{{ dateRange }}</span>
+      </div>
+      <button class="border-2 border-gray-300 rounded-full px-6 py-4 ">
+        + Add Widget
+      </button>
+
+  </div>
+
   <!-- Tarjetas de métricas -->
-  <div class="grid-cols-1 lg:grid grid-cols-4 gap-4 mb-6">
-    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-      <p class="text-gray-600">Visits</p>
+  <div class="grid-cols-1 lg:grid grid-cols-4 gap-4 mb-6 leading-loose">
+    <div class="bg-white p-6 rounded-lg shadow-md text-left flex gap-15">
+      <div>
       <p class="text-2xl font-bold">{{ visits | number }}</p>
+      <p class="text-gray-600">Visits</p>
+      </div>
+        <div class="w-20 h-20 rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 flex items-center justify-center shadow-lg">
+          <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+            <span class="text-gray-600 text-xl">👤</span>
+          </div>
+      </div>
+
     </div>
-    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-      <p class="text-gray-600">Duration</p>
+    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-25">
+      <div>
       <p class="text-2xl font-bold">{{ duration }} sec</p>
+      <p class="text-gray-600">Duration</p>
     </div>
-    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-      <p class="text-gray-600">Bounce Rate</p>
+      <div class="w-20 h-20 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center shadow-lg">
+        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+          <span class="text-pink-500 text-xl">⏰</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-20">
+      <div>
       <p class="text-2xl font-bold">{{ bounceRate }}%</p>
+      <p class="text-gray-600">Bounce Rate</p>
     </div>
-    <div class="bg-white p-6 rounded-lg shadow-md text-center">
-      <p class="text-gray-600">Pages per Visit</p>
+      <div class="w-20 h-20 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center shadow-lg">
+        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+          <span class="text-blue-500 text-xl">🔖</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-20">
+      <div>
       <p class="text-2xl font-bold">{{ pagesPerVisit }}</p>
+      <p class="text-gray-600">Pages per Visit</p>
+    </div>
+    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center shadow-lg">
+      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+        <span class="text-green-500 text-xl">📄</span>
+      </div>
+    </div>
     </div>
   </div>
 
