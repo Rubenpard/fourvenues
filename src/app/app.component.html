@@ -1,17 +1,17 @@
 <div class="flex flex-col lg:flex-row">
   <!-- Sidebar -->
-  <sidebar></sidebar>
+  <sidebar class="pt-20 lg:pt-0"></sidebar>
 
   <!-- Web Interface -->
   <web-interface class="w-full lg:w-1/6 bg-white border-b-2 border-gray-500"></web-interface>
 
   <!-- Contenedor principal -->
-  <div class="flex flex-col w-5/6 bg-gray-100">
+  <div class="w-full lg:flex flex-col lg:w-5/6 bg-gray-100">
     <!-- Navbar -->
-    <navbar class="bg-white"></navbar>
+    <navbar class="bg-white fixed top-0 w-full lg:static lg:top-auto lg:w-auto"></navbar>
 
     <!-- Dashboard -->
-    <main class="flex-1 p-6">
+    <main class="p-3 lg:flex-1 pt-16 lg:pt-6">
       <dashboard></dashboard>
     </main>
   </div>

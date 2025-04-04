@@ -1,6 +1,6 @@
 <div class="p-6 bg-gray-100 min-h-screen">
   <!-- Tarjetas de métricas -->
-  <div class="grid grid-cols-4 gap-4 mb-6">
+  <div class="grid-cols-1 lg:grid grid-cols-4 gap-4 mb-6">
     <div class="bg-white p-6 rounded-lg shadow-md text-center">
       <p class="text-gray-600">Visits</p>
       <p class="text-2xl font-bold">{{ visits | number }}</p>
@@ -20,12 +20,12 @@
   </div>
 
   <!-- Gráficos -->
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid-cols-1 lg:grid grid-cols-2 gap-4">
     <!-- Gráfico de sesiones -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
       <h3 class="text-lg font-semibold mb-2">Sessions</h3>
       <ngx-charts-line-chart
-      [view]="[590, 300]"
+      [view]="lineChartView"
       [results]="data"
       [scheme]="colorScheme"
       [gradient]="true"
@@ -39,11 +39,11 @@
     </div>
 
     <!-- Fuentes de tráfico -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
       <h3 class="text-lg font-semibold mb-2">Traffic Sources</h3>
-      <div class="flex justify-center items-center h-full">
+      <div class="flex-col md:flex flex-row justify-center items-center h-full">
         <ngx-charts-pie-chart
-          [view]="[200, 200]"
+          [view]="pieChartView"
           [legend]="false"
           [results]="trafficData"
           [doughnut]="true"
@@ -71,7 +71,7 @@
       <div class="flex">
         <div>
           <ngx-charts-bar-horizontal
-            [view]="[500, 200]"
+            [view]="barChartView"
             [results]="conversionData"
             [scheme]="colorScheme"
             [yAxis]="true"
@@ -83,7 +83,7 @@
         </div>
 
         <div class="flex flex-col ml-4">
-          <div *ngFor="let item of conversionData" class="mb-8">
+          <div *ngFor="let item of conversionData" class="mb-6">
             <span class="font-semibold">{{ item.value }}%</span>
           </div>
         </div>

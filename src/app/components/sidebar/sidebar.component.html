@@ -10,7 +10,7 @@
       'h-[250px]': contentVisible || !isMobile,
       'h-[70px]': !contentVisible && isMobile
     }"
-    class="lg:h-screen bg-gray-900 text-white flex flex-col p-4 transition-all duration-300">
+    class=" md:w-full lg:h-screen bg-gray-900 text-white flex flex-col p-4 transition-all duration-300">
 
     <!-- Botón para expandir en escritorio -->
     <button *ngIf="!isMobile" (click)="toggleSidebar()" class="mb-4 p-2 rounded bg-gray-700 hover:bg-gray-600">

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ApplicationRef } from '@angular/core';
+import { Component, AfterViewInit, ApplicationRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -24,7 +24,11 @@ export class DashboardComponent implements AfterViewInit {
   colorScheme = {
     domain: ['#4285F4', '#34A853', '#FBBC05', '#EA4335', '#9B51E0', '#DB4437']
   };
-  view: [number, number] = [700, 300]; // Tamaño del gráfico
+
+  // Tamaños de los gráficos
+  lineChartView: [number, number] = [700, 300];
+  pieChartView: [number, number] = [300, 300];
+  barChartView: [number, number] = [700, 300];
 
   data = [
     {
@@ -57,8 +61,33 @@ export class DashboardComponent implements AfterViewInit {
   ];
 
   ngAfterViewInit(): void {
+    this.updateChartSizes(); // Ajustar el tamaño al cargar
     setTimeout(() => {
       this.appRef.tick(); // Forzar la detección de cambios después de que el gráfico se haya renderizado
     }, 0);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.updateChartSizes(); // Ajustar el tamaño al cambiar el tamaño de la ventana
+  }
+
+  private updateChartSizes(): void {
+    const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+
+    if (isMobile) {
+      this.lineChartView = [200, 100];
+      this.pieChartView = [300, 200];
+      this.barChartView = [200, 250];
+    } else if (isTablet) {
+      this.lineChartView = [600, 300];
+      this.pieChartView = [250, 250];
+      this.barChartView = [500, 200];
+    } else {
+      this.lineChartView = [600, 300];
+      this.pieChartView = [300, 300];
+      this.barChartView = [500, 200];
+    }
   }
 }
