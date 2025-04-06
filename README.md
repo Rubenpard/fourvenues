@@ -1,59 +1,40 @@
-# Fourvenues
+# Prueba técnica Rubén Martinez
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+Este proyecto es una prueba técnica desarrollada por Rubén Martínez, que muestra la creación de una interfaz web interactiva con funcionalidades dinámicas, utilizando las tecnologías más modernas y buenas prácticas.
 
-## Development server
+## Instalación
 
-To start a local development server, run:
+Para ver el proyecto, accede mediante CMD a la ruta de una carpeta donde desees descargar el proyecto:
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Abre una terminal en la ubicación donde deseas clonar el proyecto.
+2. Ejecuta los siguientes comandos:
 
 ```bash
-ng generate component component-name
-```
+cd <dirección de la carpeta>
+git init
+git clone https://github.com/Rubenpard/ctnnotariado.git
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+## Parte técnica CSS
 
-## Building
+Diseño mobile-first con Tailwind CSS. He utilizado esta herramienta para garantizar un diseño responsive, asegurando que la interfaz de usuario se ajuste a distintos tamaños de pantalla sin necesidad de escribir código CSS adicional.
 
-To build the project run:
+El proyecto no utiliza Sass ni ninguna otra metodología CSS adicional. Toda la personalización de estilos se hace directamente con Tailwind y sus utilidades para margenes, espaciados, tipografía y colores.
 
-```bash
-ng build
-```
+## Parte técnica JavaScript y Frameworks
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+El proyecto está desarrollado con Angular 19 utilizando componentes independientes (standalone components), lo que facilita la modularidad y el rendimiento. Además, he hecho uso de los siguientes elementos clave en el proyecto:
 
-## Running unit tests
+- Servicios para manejar el almacenamiento de datos en el navegador, evitando la necesidad de realizar solicitudes API cada vez que se recarga la página.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- NgFor y ngIf: Se utilizan para iterar sobre listas de datos y mostrar contenido dinámico en función de las condiciones, como la visualización de notificaciones y contactos.
 
-```bash
-ng test
-```
+- Manejo de gráficos: Se utilizan bibliotecas como Ngx-Charts y Chart.js para mostrar información visual, como gráficos de líneas, barras y circulares.
 
-## Running end-to-end tests
+## Parte técnica JavaScript y Frameworks
 
-For end-to-end (e2e) testing, run:
+El proyecto consume una API para para obtener usuarios aleatorios:
 
-```bash
-ng e2e
-```
+https://randomuser.me/
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
