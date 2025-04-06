@@ -11,7 +11,7 @@ Para ver el proyecto, accede mediante CMD a la ruta de una carpeta donde desees 
 
 cd <dirección de la carpeta>
 git init
-git clone https://github.com/Rubenpard/ctnnotariado.git
+git clone https://github.com/Rubenpard/fourvenues.git
 
 
 ## Parte técnica CSS
@@ -36,4 +36,6 @@ El proyecto consume una API para para obtener usuarios aleatorios:
 
 https://randomuser.me/
 
+
+Muchas gracias por tu tiempo, te deseo un buen día
 
