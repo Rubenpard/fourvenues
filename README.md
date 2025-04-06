@@ -9,7 +9,6 @@ Para ver el proyecto, accede mediante CMD a la ruta de una carpeta donde desees 
 1. Abre una terminal en la ubicación donde deseas clonar el proyecto.
 2. Ejecuta los siguientes comandos:
 
-```bash
 cd <dirección de la carpeta>
 git init
 git clone https://github.com/Rubenpard/ctnnotariado.git
