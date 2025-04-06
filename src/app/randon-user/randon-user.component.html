@@ -1,19 +1,4 @@
-<div *ngIf="userData; else loading">
-  <h1>{{ userData.name.first }} {{ userData.name.last }}</h1>
-  <p>Email: {{ userData.email }}</p>
-  <img [src]="userData.picture.large" alt="User Picture">
+<div class="flex items-center gap-2 cursor-pointer" *ngIf="userData">
+  <img [src]="userData.image" alt="Usuario" class="w-10 h-10 rounded-full" (click)="onImageClick()"/>
+  <span class="font-medium text-gray-700">{{ userData.firstName }} {{ userData.lastName }}</span>
 </div>
-
-<li class="flex items-center gap-9 cursor-pointer">
-  <div class="flex items-center gap-4 relative">
-    <img [src]="userData.picture.large"
-         [ngClass]="{
-           'w-10 h-10 rounded-full': true,
-         }" />
-  </div>
-  <span class="font-medium text-gray-700">{{ userData.name.first }} {{ userData.name.last }}</span>
-</li>
-
-<ng-template #loading>
-  <p>Loading user data...</p>
-</ng-template>

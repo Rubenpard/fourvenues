@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RandomUserService } from '../../Services/random-user.service';
 import { CommonModule } from '@angular/common';
+import { RandonUserComponent } from '../../randon-user/randon-user.component';
 
 @Component({
   selector: 'navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RandonUserComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.sass',
 })

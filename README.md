@@ -36,6 +36,13 @@ El proyecto consume una API para para obtener usuarios aleatorios:
 
 https://randomuser.me/
 
+También he agregado un componente y un servicio extra 
+
+https://dummyjson.com/
+
+En caso de estar caida la API https://randomuser.me/api/ . 
+Me ha dado muchos problemas ya que ha estado caida gran parte del tiempo durante la elavoración del proyecto   
+
 
 Muchas gracias por tu tiempo, te deseo un buen día
 
