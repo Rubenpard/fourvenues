@@ -35,53 +35,56 @@
   </div>
 
   <!-- Tarjetas de métricas -->
-  <div class="grid-cols-1 lg:grid grid-cols-4 gap-4 mb-6 leading-loose">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 leading-loose">
     <div class="bg-white p-6 rounded-lg shadow-md text-left flex gap-15">
       <div>
-      <p class="text-2xl font-bold">{{ visits | number }}</p>
-      <p class="text-gray-600">Visits</p>
+        <p class="text-2xl font-bold">{{ visits | number }}</p>
+        <p class="text-gray-600">Visits</p>
       </div>
-        <div class="w-20 h-20 rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 flex items-center justify-center shadow-lg">
-          <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-            <span class="text-gray-600 text-xl">👤</span>
-          </div>
+      <div class="w-20 h-20 rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 flex items-center justify-center shadow-lg">
+        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+          <span class="text-gray-600 text-xl">👤</span>
+        </div>
       </div>
-
     </div>
+
     <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-25">
       <div>
-      <p class="text-2xl font-bold">{{ duration }} sec</p>
-      <p class="text-gray-600">Duration</p>
-    </div>
+        <p class="text-2xl font-bold">{{ duration }} sec</p>
+        <p class="text-gray-600">Duration</p>
+      </div>
       <div class="w-20 h-20 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center shadow-lg">
         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
           <span class="text-pink-500 text-xl">⏰</span>
         </div>
       </div>
     </div>
+
     <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-20">
       <div>
-      <p class="text-2xl font-bold">{{ bounceRate }}%</p>
-      <p class="text-gray-600">Bounce Rate</p>
-    </div>
+        <p class="text-2xl font-bold">{{ bounceRate }}%</p>
+        <p class="text-gray-600">Bounce Rate</p>
+      </div>
       <div class="w-20 h-20 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center shadow-lg">
         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
           <span class="text-blue-500 text-xl">🔖</span>
         </div>
       </div>
     </div>
+
     <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-20">
       <div>
-      <p class="text-2xl font-bold">{{ pagesPerVisit }}</p>
-      <p class="text-gray-600">Pages per Visit</p>
-    </div>
-    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center shadow-lg">
-      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-        <span class="text-green-500 text-xl">📄</span>
+        <p class="text-2xl font-bold">{{ pagesPerVisit }}</p>
+        <p class="text-gray-600">Pages per Visit</p>
+      </div>
+      <div class="w-20 h-20 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center shadow-lg">
+        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+          <span class="text-green-500 text-xl">📄</span>
+        </div>
       </div>
     </div>
-    </div>
   </div>
+
 <!-- Contenedor padre para columnas independientes -->
 <div class="flex flex-col lg:flex-row gap-6">
   <!-- Columna Izquierda -->

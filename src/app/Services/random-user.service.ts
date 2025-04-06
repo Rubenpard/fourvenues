@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+  import { Injectable } from '@angular/core';
+  import { from, Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class RandomUserService {
-  private apiUrl = 'https://randomuser.me/api/';
+  @Injectable({
+    providedIn: 'root',
+  })
+  export class RandomUserService {
+    private apiUrl = 'https://randomuser.me/api/';
 
-  constructor(private http: HttpClient) {}
+    constructor() {}
 
-  getRandomUser(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    getRandomUser(): Observable<any> {
+      // Usamos 'from' para convertir la Promise en Observable
+      return from(fetch(this.apiUrl).then(response => response.json()));
+    }
   }
-}

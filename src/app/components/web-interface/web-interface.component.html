@@ -3,40 +3,42 @@
   <h2 class="text-xl font-bold text-gray-500 text-center border-b-3 border-gray-200 p-8.5">Web Interface</h2>
 
   <!-- Menú principal -->
-  <ul class="flex flex-col gap-3 border-b-3 border-gray-200 p-9">
-    <li class="flex items-center gap-3 cursor-pointer relative p-2 hover:bg-gray-200 rounded">
-      <span class="font-medium text-gray-400">Dashboards</span>
-    </li>
-    <li *ngFor="let item of menuItems; let i = index"
-        class="flex items-center gap-3 cursor-pointer relative p-2 hover:bg-gray-200 rounded"
-        (click)="clearNotifications(i)">
-      <span class="font-medium">{{ item.label }}</span>
-      <span *ngIf="item.hasNotifications"
-            class="absolute top-2 right-0 bg-blue-500 text-white text-sm font-bold px-2.5 py-1 rounded-full">
-        {{ item.count }}
-      </span>
-    </li>
-  </ul>
-
-  <!-- Menú de contactos -->
-  <ul class="flex flex-col gap-4 p-9">
-    <li class="flex items-center gap-3 cursor-pointer relative p-2 hover:bg-gray-200 rounded">
-      <span class="font-medium text-gray-400">Contacts</span>
-    </li>
-    <li *ngFor="let item of menuContacts; let i = index" class="flex items-center gap-9 cursor-pointer">
-      <div class="flex items-center gap-4 relative">
-        <img [src]="item.picture" [alt]="item.name"
-             [ngClass]="{
-               'w-10 h-10 rounded-full': true,
-               'opacity-80 grayscale': !item.connected
-             }" />
-        <span *ngIf="item.connected"
-              class="absolute top-0 right-0 bg-blue-500 border-2 border-white text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+  <div class="flex flex-col md:flex-row justify-center lg:flex-col">
+    <ul class="flex flex-col gap-3 border-b-3 border-gray-200 p-9">
+      <li class="flex items-center gap-3 cursor-pointer relative p-2 hover:bg-gray-200 rounded">
+        <span class="font-medium text-gray-400">Dashboards</span>
+      </li>
+      <li *ngFor="let item of menuItems; let i = index"
+          class="flex items-center gap-3 cursor-pointer relative p-2 hover:bg-gray-200 rounded"
+          (click)="clearNotifications(i)">
+        <span class="font-medium">{{ item.label }}</span>
+        <span *ngIf="item.hasNotifications"
+              class="absolute top-2 right-0 bg-blue-500 text-white text-sm font-bold px-2.5 py-1 rounded-full md:relative md:top-0 md:right-0 lg:absolute">
+          {{ item.count }}
         </span>
-      </div>
-      <span class="font-medium text-gray-700">{{ item.name }}</span>
-    </li>
-  </ul>
+      </li>
+    </ul>
+
+    <!-- Menú de contactos -->
+    <ul class="flex flex-col gap-4 p-9">
+      <li class="flex items-center gap-3 cursor-pointer relative p-2 hover:bg-gray-200 rounded">
+        <span class="font-medium text-gray-400">Contacts</span>
+      </li>
+      <li *ngFor="let contact of menuContacts; let i = index" class="flex items-center gap-9 cursor-pointer">
+        <div class="flex items-center gap-4 relative">
+          <img [src]="contact.picture"
+               [ngClass]="{
+                 'w-10 h-10 rounded-full': true,
+                 'opacity-80 grayscale': !contact.connected
+               }" />
+          <span *ngIf="contact.connected"
+                class="absolute top-0 right-0 bg-blue-500 border-2 border-white text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+          </span>
+        </div>
+        <span class="font-medium text-gray-700">{{ contact.name }}</span>
+      </li>
+    </ul>
+  </div>
 
   <!-- Íconos de acción (fijar al fondo) -->
   <div class="flex items-center justify-between gap-9 border-t-3 border-gray-100 p-9 mt-auto">

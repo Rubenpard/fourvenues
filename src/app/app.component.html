@@ -1,6 +1,6 @@
  <div class="flex flex-col lg:flex-row min-h-screen">
   <!-- Sidebar -->
-  <sidebar class="pt-60 md:pt-20 lg:pt-0"></sidebar>
+  <sidebar class="pt-60 md:pt-25 lg:pt-0"></sidebar>
 
   <!-- Web Interface -->
   <web-interface class="w-full lg:w-1/6 bg-white border-r-2 border-gray-300 bg-gray-900 min-h-screen"></web-interface>
@@ -12,7 +12,7 @@
 
     <!-- Dashboard -->
     <main class="p-3 lg:flex-1 pt-16 lg:pt-6">
-      <dashboard></dashboard>
+      <dashboard [visibleColumns]="['sessions', 'bounceRate', 'conversion']"></dashboard>
     </main>
   </div>
 </div>

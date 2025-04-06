@@ -1,24 +1,26 @@
-import { Component, AfterViewInit, ApplicationRef, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, ApplicationRef, HostListener, Input, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'dashboard',
   standalone: true,
   imports: [CommonModule, NgxChartsModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.sass']
 })
 export class DashboardComponent implements AfterViewInit {
+  @Input() visibleColumns: string[] = [];
 
-    // Variables para los datos de las estadísticas
-    numberOfUsers = 1000;
-    visits = 1702946;
-    duration = 92;
-    bounceRate = 58.6;
-    pagesPerVisit = 1.81;
 
-  constructor(private appRef: ApplicationRef) {}
+  // Variables para las estadísticas
+  numberOfUsers = 1000;
+  visits = 1702946;
+  duration = 92;
+  bounceRate = 58.6;
+  pagesPerVisit = 1.81;
+
+  constructor(private appRef: ApplicationRef, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   filters = [
     { label: 'Today', value: 'today' },
@@ -28,10 +30,9 @@ export class DashboardComponent implements AfterViewInit {
     { label: 'Year', value: 'year' }
   ];
 
+  selectedFilter = 'month';
   dateRange = '24 Mar - 23 Apr 2019';
 
-
-   // Datos del gráfico
   public lineChartData = [
     {
       name: 'Bounce Rate',
@@ -46,13 +47,10 @@ export class DashboardComponent implements AfterViewInit {
     },
   ];
 
-
-  // Esquema de colores reutilizable
   colorScheme = {
     domain: ['#4285F4', '#34A853', '#FBBC05', '#EA4335', '#9B51E0', '#DB4437']
   };
 
-  // Tamaños de los gráficos
   lineChartView: [number, number] = [700, 300];
   pieChartView: [number, number] = [300, 300];
   barChartView: [number, number] = [700, 300];
@@ -89,36 +87,53 @@ export class DashboardComponent implements AfterViewInit {
   ];
 
   ngAfterViewInit(): void {
-    this.updateChartSizes(); // Ajustar el tamaño al cargar
     setTimeout(() => {
-      this.appRef.tick(); // Forzar la detección de cambios después de que el gráfico se haya renderizado
-    }, 0);
+      if (isPlatformBrowser(this.platformId)) {
+        this.updateChartSizes();
+        this.appRef.tick();
+      }
+    });
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
-    this.updateChartSizes(); // Ajustar el tamaño al cambiar el tamaño de la ventana
+    if (isPlatformBrowser(this.platformId)) {
+      this.updateChartSizes();
+    }
   }
 
   private updateChartSizes(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     const isMobile = window.innerWidth <= 768;
     const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
 
     if (isMobile) {
-      this.lineChartView = [300, 100];
-      this.pieChartView = [200, 200];
-      this.barChartView = [200, 180];
-      this.BounceView = [300, 100];
+      this.lineChartView = [350, 200];
+      this.pieChartView = [150, 150];
+      this.barChartView = [300, 180];
+      this.BounceView = [350, 200];
     } else if (isTablet) {
-      this.lineChartView = [600, 300];
-      this.pieChartView = [250, 250];
-      this.barChartView = [500, 200];
-      this.BounceView = [300, 100];
+      this.lineChartView = [700, 300];
+      this.pieChartView = [300, 250];
+      this.barChartView = [600, 200];
+      this.BounceView = [700, 200];
     } else {
       this.lineChartView = [600, 300];
       this.pieChartView = [200, 200];
       this.barChartView = [500, 200];
-      this.BounceView = [100, 300];
+      this.BounceView = [600, 300];
     }
+  }
+
+  onFilterChange(filter: string): void {
+    this.selectedFilter = filter;
+    console.log(`Filtro seleccionado: ${filter}`);
+  }
+
+  isColumnVisible(columnName: string): boolean {
+    return Array.isArray(this.visibleColumns) && this.visibleColumns.includes(columnName);
   }
 }
