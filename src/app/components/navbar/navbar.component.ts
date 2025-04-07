@@ -1,70 +1,55 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RandomUserService } from '../../Services/random-user.service';
 import { CommonModule } from '@angular/common';
-import { RandonUserComponent } from '../../randon-user/randon-user.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'navbar',
   standalone: true,
-  imports: [CommonModule, RandonUserComponent],
+  imports: [CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.sass',
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   userData: any = null;
-  private intervalId: any;
-  private isLoading: boolean = false;
-  private hasError: boolean = false;
+  private timeoutId: any = null;
+  private subscription: Subscription | null = null;
+  private isDestroyed = false;
 
   constructor(private randomUserService: RandomUserService) {}
 
   ngOnInit(): void {
-    console.log('Componente cargado, obteniendo primer usuario...');
-    this.fetchRandomUser(); // Primer usuario al iniciar
-    // Desactivar la actualización automática para pruebas
-    // this.startInterval();   // Comienza la ejecución automática cada 10 segundos
+    this.getUserAndScheduleNext();
   }
 
-  // Función para obtener el usuario aleatorio
-  fetchRandomUser(): void {
-    if (this.isLoading) {
-      console.log('Ya se está cargando un usuario, espera...');
-      return; // Evitar peticiones si ya está cargando
-    }
+  getUserAndScheduleNext(): void {
+    if (this.isDestroyed) return;
 
-    console.log('Realizando petición para obtener un usuario...');
-    this.isLoading = true;  // Indicamos que está cargando
-    this.hasError = false;  // Reseteamos el error
-
-    this.randomUserService.getRandomUser().subscribe({
-      next: (data: any) => {
-        this.isLoading = false;
-        if (data.results && data.results.length > 0) {
-          this.userData = data.results[0];
-          console.log('Usuario actualizado:', this.userData);
-        } else {
-          console.error('No se encontraron usuarios.');
-          this.hasError = true;
-        }
+    this.subscription = this.randomUserService.getRandomUser().subscribe({
+      next: (data) => {
+        this.userData = data?.results?.[0] ?? null;
+        this.scheduleNext();
       },
-      error: (error: any) => {
-        this.isLoading = false;
-        this.hasError = true;
-        console.error('Error fetching user data:', error);
+      error: (err) => {
+        console.error('Error obteniendo usuario:', err);
+        this.scheduleNext();
       }
     });
   }
 
-  // Se ejecuta cuando se hace clic en la imagen
-  onImageClick(): void {
-    this.fetchRandomUser();
-    // this.startInterval();     // Reiniciar intervalo (desactivado para pruebas)
+  scheduleNext(): void {
+    this.timeoutId = setTimeout(() => {
+      this.getUserAndScheduleNext();
+    }, 10000);
   }
 
-  // Limpieza al destruir componente
+  onImageClick(): void {
+    this.getUserAndScheduleNext();
+  }
+
   ngOnDestroy(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId); // Limpiar intervalo al destruir el componente
-    }
+    this.isDestroyed = true;
+    clearTimeout(this.timeoutId);
+    this.subscription?.unsubscribe();
   }
 }

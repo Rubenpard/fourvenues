@@ -1,4 +1,4 @@
-<div class="p-1 lg:p-6 bg-gray-100 min-h-screen">
+<div class="p-1 lg:p-6 bg-gray-100 min-h-screen dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
   <div class="flex-col p-0 lg:flex flex-row items-center justify-between lg:p-4 rounded-lg mb-9">
     <!-- Título -->
@@ -6,7 +6,7 @@
       <div class="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
         <span class="text-gray-600 text-lg font-bold">☰</span>
       </div>
-      <h1 class="text-xl font-semibold text-gray-800">Dashboard</h1>
+      <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Dashboard</h1>
     </div>
 
     <!-- Filtros -->
@@ -15,9 +15,10 @@
               (click)="setFilter(filter.value)"
               [ngClass]="{
                 'bg-gray-100': selectedFilter !== filter.value,
-                'bg-blue-600 text-white': selectedFilter === filter.value
+                'bg-blue-600 text-white': selectedFilter === filter.value,
+                'dark:bg-gray-900': selectedFilter === filter.value
               }"
-              class="px-4 py-2 text-sm font-medium text-gray-400 rounded hover:bg-gray-200">
+              class="px-4 py-2 text-sm font-medium text-gray-400 rounded hover:bg-gray-200 ">
         {{ filter.label }}
       </button>
     </div>
@@ -26,7 +27,7 @@
 
       <div class="flex items-center border-2 border-gray-300 rounded-full px-6 py-4 mb-5">
         <span class="text-gray-600 text-sm">📅</span>
-        <span class="ml-2 text-gray-700 text-sm">{{ dateRange }}</span>
+        <span class="ml-2 text-gray-700 text-sm dark:text-white">{{ dateRange }}</span>
       </div>
       <button class="border-2 border-gray-300 rounded-full px-6 py-4 ">
         + Add Widget
@@ -36,10 +37,10 @@
 
   <!-- Tarjetas de métricas -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 leading-loose">
-    <div class="bg-white p-6 rounded-lg shadow-md text-left flex gap-15">
+    <div class="bg-white p-6 rounded-lg shadow-md text-left flex gap-15 dark:bg-gray-700 dark:text-white">
       <div>
-        <p class="text-2xl font-bold">{{ visits | number }}</p>
-        <p class="text-gray-600">Visits</p>
+        <p class="text-2xl font-bold ">{{ visits | number }}</p>
+        <p class="text-gray-600 dark:text-white">Visits</p>
       </div>
       <div class="w-20 h-20 rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 flex items-center justify-center shadow-lg">
         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -48,10 +49,10 @@
       </div>
     </div>
 
-    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-25">
+    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-25 dark:bg-gray-700 dark:text-white">
       <div>
         <p class="text-2xl font-bold">{{ duration }} sec</p>
-        <p class="text-gray-600">Duration</p>
+        <p class="text-gray-600 dark:text-white">Duration</p>
       </div>
       <div class="w-20 h-20 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center shadow-lg">
         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -60,10 +61,10 @@
       </div>
     </div>
 
-    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-20">
+    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-20 dark:bg-gray-700 dark:text-white">
       <div>
         <p class="text-2xl font-bold">{{ bounceRate }}%</p>
-        <p class="text-gray-600">Bounce Rate</p>
+        <p class="text-gray-600 dark:text-white">Bounce Rate</p>
       </div>
       <div class="w-20 h-20 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center shadow-lg">
         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -72,10 +73,10 @@
       </div>
     </div>
 
-    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-20">
+    <div class="bg-white p-6 rounded-lg shadow-md text-left leading-loose text-left flex gap-20 dark:bg-gray-700 dark:text-white">
       <div>
         <p class="text-2xl font-bold">{{ pagesPerVisit }}</p>
-        <p class="text-gray-600">Pages per Visit</p>
+        <p class="text-gray-600 dark:text-white">Pages per Visit</p>
       </div>
       <div class="w-20 h-20 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center shadow-lg">
         <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -90,7 +91,7 @@
   <!-- Columna Izquierda -->
   <div class="flex flex-col gap-6 w-full lg:w-1/2">
     <!-- Gráfico de Sessions -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 dark:text-white">
       <h3 class="text-lg font-semibold mb-2">Sessions</h3>
       <ngx-charts-line-chart
         [view]="lineChartView"
@@ -107,7 +108,7 @@
     </div>
 
     <!-- Tasas de Conversión -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 dark:text-white">
       <h3 class="text-lg font-semibold mb-2">Conversion Rates</h3>
       <div class="flex">
         <div>
@@ -134,7 +135,7 @@
   <!-- Columna Derecha -->
   <div class="flex flex-col gap-6 w-full lg:w-1/2">
     <!-- Fuentes de Tráfico -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 dark:text-white">
       <h3 class="text-lg font-semibold mb-2">Traffic Sources</h3>
       <div class="flex flex-col md:flex flex-row justify-center items-center h-full">
         <ngx-charts-pie-chart
@@ -145,7 +146,7 @@
           [scheme]="colorScheme"
           [animations]="false">
         </ngx-charts-pie-chart>
-        <div class="ml-4 grid grid-cols-2 gap-2">
+        <div class="ml-4 grid grid-cols-2 gap-2 dark:bg-gray-700 dark:text-white">
           <div *ngFor="let item of trafficData; let i = index" class="flex items-center">
             <!-- Color correspondiente -->
             <div
@@ -160,7 +161,7 @@
     </div>
 
     <!-- Bounce Rate -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-700 dark:text-white">
       <h3 class="text-lg font-semibold mb-2">Bounce Rate</h3>
       <div class="flex flex-col md:flex flex-row justify-center items-center h-full">
         <ngx-charts-line-chart

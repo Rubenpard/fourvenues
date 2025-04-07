@@ -30,6 +30,8 @@ El proyecto está desarrollado con Angular 19 utilizando componentes independien
 
 - Manejo de gráficos: Se utilizan bibliotecas como Ngx-Charts y Chart.js para mostrar información visual, como gráficos de líneas, barras y circulares.
 
+-Este proyecto utiliza RxJS (Reactive Extensions for JavaScript) para manejar flujos de datos asincrónicos, como peticiones a APIs. Angular trabaja de forma natural con RxJS a través de observables, lo que permite suscribirse a eventos, manejar respuestas y controlar errores fácilmente.
+
 ## Parte técnica JavaScript y Frameworks
 
 El proyecto consume una API para para obtener usuarios aleatorios:

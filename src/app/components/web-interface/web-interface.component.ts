@@ -2,7 +2,6 @@ import { Component,OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
-import { RandonUserComponent } from "../../randon-user/randon-user.component";
 
 
 @Component({
