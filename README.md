@@ -38,7 +38,7 @@ El proyecto consume una API para para obtener usuarios aleatorios:
 
 https://randomuser.me/
 
-También he agregado un componente y un servicio extra 
+He dejado un vinculo a otra API en el servicio por si acaso fallara randonuser 
 
 https://dummyjson.com/
 
